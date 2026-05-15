@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="premium advertising studio crafting bold, memorable brand experiences that captivate audiences and drive results.">
+    <meta name="theme-color" content="#FF5733">
+    <title>Alpha Media | Premium Advertising Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- FAVICON -->
+     <link rel="icon" type="image/png" href="public/images/favicon.png">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Archivo', 'sans-serif'],
+            body: ['Archivo', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF5733',
+            secondary: '#0a0a0a',
+            foreground: '#171717',
+            muted: '#737373',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+
+    html {
+      scrollbar-color: #ff4500 #f0f0f0;
+    }
+    body {
+      font-family: 'Archivo', sans-serif;
+      right: 0;
+      scroll-behavior: smooth;
+      
+    }
+
+    /* LOADING ANIMATION START */
+    .loader {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 6s, visibility 0.6s;
+  }
+  .loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .loader::after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #ff5733;
+    border-radius: 50%;
+    animation: loading 1s  linear infinite;
+  }
+
+  @keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(2turn);
+    }
+  }
+
+    /* LOADING ANIMATION END */
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-fade-up {
+      animation: fade-up 0.8s ease-out forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out forwards;
+    }
+    
+    .animation-delay-200 { animation-delay: 200ms; }
+    .animation-delay-400 { animation-delay: 400ms; }
+    .animation-delay-600 { animation-delay: 600ms; }
+    
+    .project-card:hover .project-image {
+      transform: scale(1.1);
+    }
+    
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    .project-card:hover .view-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-white text-foreground scroll-smooth">
+
+  <div class="loader"></div>
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-1000 bg-transparent">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <nav class="flex h-20 items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center text-2xl font-bold tracking-tight text-foreground font-heading">
+          <span class="text-primary italic text-4xl leading-none" style="font-family: Georgia, serif; margin-top: -5px;">&#945;</span><span class="font-bold italic">ALPHA</span><span class="ml-1 text-muted font-normal">media</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden items-center gap-10 md:flex">
+          <a href="#work" class="text-lg font-medium text-foreground/80 transition-colors hover:text-primary">
+            Work
+          </a>
+          <a href="#about" class="text-lg font-medium text-foreground/80 transition-colors hover:text-primary">
+            About
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" class="p-2 md:hidden" aria-label="Toggle menu">
+          <svg id="menu-icon" class="h-6 w-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="h-6 w-6 text-foreground hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden absolute left-0 right-0 top-20 bg-white shadow-lg md:hidden animate-fade-in">
+      <div class="flex flex-col gap-4 p-6">
+        <a href="#work" onclick="closeMobileMenu()" class="text-lg font-medium text-foreground/80 transition-colors hover:text-primary">
+          Work
+        </a>
+        <a href="#about" onclick="closeMobileMenu()" class="text-lg font-medium text-foreground/80 transition-colors hover:text-primary">
+          About
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center overflow-hidden justify-center  bg-white">
+    <!-- Subtle Grid Pattern -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <!-- Orange Accent Circles - Floating -->
+    <div class="absolute top-1/4 right-1/4 w-32 h-32 lg:w-64 lg:h-64 rounded-full bg-primary/10 animate-float"></div>
+    <div class="absolute bottom-1/3 left-[16%] w-16 h-16 lg:w-32 lg:h-32 rounded-full bg-primary/5 animate-float animation-delay-400"></div>
+
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
+      <div class="animate-fade-up">
+        <!-- Main Headline with Floating Animation -->
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] animate-float font-heading" style="animation-duration: 8s;">
+          Make Your Brand<br>
+          <span class="text-primary">Visible</span> With Us
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="mx-auto mt-8 max-w-2xl text-lg sm:text-xl text-muted leading-relaxed animate-fade-up animation-delay-200 opacity-0">
+          Transforming visionary ideas into captivating campaigns that resonate, inspire, and drive measurable results.
+        </p>
+
+        <!-- CTA Button -->
+        <div class="mt-12 animate-fade-up animation-delay-400 opacity-0">
+          <a href="#work" class="btn inline-flex bg-primary text-white hover:bg-primary/90 rounded-full px-10 py-4 text-base font-semibold shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 hover:scale-105">
+            View Work
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- About Section -->
+  <section id="about" class="relative bg-secondary py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="mb-16 lg:mb-24">
+        <p class="text-sm font-medium uppercase tracking-[0.3em] text-primary mb-4">
+          About Us
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight font-heading">
+          Crafting Stories<br>
+          <span class="text-primary">That Matter</span>
+        </h2>
+      </div>
+
+      <!-- Content -->
+      <div class="max-w-3xl">
+        <p class="text-lg lg:text-xl text-white/90 leading-relaxed mb-8">
+          We are a collective of strategists, designers, and storytellers united by a singular vision: to create advertising that doesn&apos;t just capture attention&mdash;it commands it.
+        </p>
+        <p class="text-base text-white/70 leading-relaxed">
+          Every brand has a story worth telling. We dive deep into the essence of what makes you unique, translating complex ideas into visual narratives that resonate with your audience on a profound level. Our approach blends strategic insight with creative excellence, ensuring every campaign we craft is both beautiful and effective.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!--Work Section -->
+  <section id="work" class="py-24 lg:py-32 bg-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="mb-16 lg:mb-24">
+        <p class="text-lg font-medium uppercase tracking-[0.3em] text-primary mb-4">
+          Our Work
+        </p>
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight font-heading">
+            Selected<br>
+            <span class="text-primary">Projects</span>
+          </h2>
+        </div>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        
+        <!-- Project 1 -->
+        <div class="project-card group relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
+          <a href="brand1.html">
+          <div class="relative aspect-[4/5] overflow-hidden">
+            <img src="public/images/IMG_9969.webp" alt="ahmadyar" class="project-image w-full h-full object-cover transition-transform duration-700 ease-out">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-2 transition-all duration-500 translate-y-2 opacity-70 group-hover:translate-y-0 group-hover:opacity-100">
+              Brand Campaign
+            </p>
+            <h3 class="text-xl lg:text-2xl font-bold text-white transition-all duration-500 translate-y-1 group-hover:translate-y-0 font-heading">
+              AHMADYAR
+            </h3>
+            <div class="view-link mt-4 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-500">
+              <span class="text-sm text-white/80">View Project</span>
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+          </a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card group relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
+          <a href="brand2.html">
+          <div class="relative aspect-[4/5] overflow-hidden">
+            <img src="public/images/supercolaLogo.webp" alt="super cola" class="project-image w-full h-full object-cover transition-transform duration-700 ease-out">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-2 transition-all duration-500 translate-y-2 opacity-70 group-hover:translate-y-0 group-hover:opacity-100">
+              Brand Campaign
+            </p>
+            <h3 class="text-xl lg:text-2xl font-bold text-white transition-all duration-500 translate-y-1 group-hover:translate-y-0 font-heading">
+              SUPER COLA
+            </h3>
+            <div class="view-link mt-4 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-500">
+              <span class="text-sm text-white/80">View Project</span>
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+          </a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card group relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
+          <a href="brand3.html">
+          <div class="relative aspect-[4/5] overflow-hidden">
+            <img src="public/images/continental.webp" alt="Urban Brew Co Campaign" class="project-image w-full h-full object-cover transition-transform duration-700 ease-out">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-2 transition-all duration-500 translate-y-2 opacity-70 group-hover:translate-y-0 group-hover:opacity-100">
+              Brand Campaign
+            </p>
+            <h3 class="text-xl lg:text-2xl font-bold text-white transition-all duration-500 translate-y-1 group-hover:translate-y-0 font-heading">
+              INTER CONTINENTAL
+            </h3>
+            <div class="view-link mt-4 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-500">
+              <span class="text-sm text-white/80">View Project</span>
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+          </a>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card group relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
+          <a href="brand4.html">
+          <div class="relative aspect-[4/5] overflow-hidden">
+            <img src="public/images/iqbalamiri (5).webp" alt="TechForward Campaign" class="project-image w-full h-full object-cover transition-transform duration-700 ease-out">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-2 transition-all duration-500 translate-y-2 opacity-70 group-hover:translate-y-0 group-hover:opacity-100">
+              Health Care
+            </p>
+            <h3 class="text-xl lg:text-2xl font-bold text-white transition-all duration-500 translate-y-1 group-hover:translate-y-0 font-heading">
+              IQBAL AMIRI
+            </h3>
+            <div class="view-link mt-4 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-500">
+              <span class="text-sm text-white/80">View Project</span>
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+          </a>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card group relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
+          <a href="brand5.html">
+          <div class="relative aspect-[4/5] overflow-hidden">
+            <img src="public/images/nazilanaz.webp" alt="Elevated Living Campaign" class="project-image w-full h-full object-cover transition-transform duration-700 ease-out">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-2 transition-all duration-500 translate-y-2 opacity-70 group-hover:translate-y-0 group-hover:opacity-100">
+              Brand Campaign
+            </p>
+            <h3 class="text-xl lg:text-2xl font-bold text-white transition-all duration-500 translate-y-1 group-hover:translate-y-0 font-heading">
+              NAZILA NAZ
+            </h3>
+            <div class="view-link mt-4 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-500">
+              <span class="text-sm text-white/80">View Project</span>
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+          </a>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card group relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
+          <a href="brand6.html">
+          <div class="relative aspect-[4/5] overflow-hidden">
+            <img src="public/images/Pakiza Logo_250301_230411 copy.webp" alt="Pulse Fitness Campaign" class="project-image w-full h-full object-cover transition-transform duration-700 ease-out">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-2 transition-all duration-500 translate-y-2 opacity-70 group-hover:translate-y-0 group-hover:opacity-100">
+              Restaurant Campaign
+            </p>
+            <h3 class="text-xl lg:text-2xl font-bold text-white transition-all duration-500 translate-y-1 group-hover:translate-y-0 font-heading">
+              PAKIZA
+            </h3>
+            <div class="view-link mt-4 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-500">
+              <span class="text-sm text-white/80">View Project</span>
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary py-20 lg:py-28 border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <!-- Footer Bottom -->
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <!-- Logo & Copyright -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+          <a href="#" class="flex items-center text-2xl font-bold tracking-tight text-white font-heading">
+            <span class="text-primary italic text-4xl leading-none" style="font-family: Georgia, serif; margin-top: -5px;">&#945;</span><span class="font-bold italic">ALPHA</span><span class="ml-1 text-white/60 font-normal">media</span>
+          </a>
+          <span class="text-sm text-white/40">
+            &copy; 2026 All rights reserved
+          </span>
+        </div>
+        <div class="credits text-white/60"><span class="text-md" style="color: #ff5733;">Designed By</span> Mansoor Ahmad</div>
+
+        <!-- Navigation Links -->
+        <nav class="flex items-center gap-8">
+          <a href="#work" class="text-md text-white/60 hover:text-primary transition-colors">
+            Work
+          </a>
+          <a href="#about" class="text-md text-white/60 hover:text-primary transition-colors">
+            About
+          </a>
+        </nav>
+
+        <!-- Social Links -->
+        <div class="flex items-center gap-4">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/alphamedia.af" aria-label="Instagram" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:border-primary hover:text-primary transition-all hover:scale-110">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61588675591499" aria-label="Facebook" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:border-primary hover:text-primary transition-all hover:scale-110">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

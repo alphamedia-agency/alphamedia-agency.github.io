@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium advertising studio crafting bold, memorable brand experiences that captivate audiences and drive results.">
+    <meta name="theme-color" content="#FF5733">
+    <title>Alpha Media | Premium Advertising Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <!-- FAVICON -->
+     <link rel="icon" type="image/png" href="public/images/favicon.png">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Archivo', 'sans-serif'],
+            body: ['Archivo', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF5733',
+            secondary: '#0a0a0a',
+            foreground: '#171717',
+            muted: '#737373',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+     html {
+      scrollbar-color: #ff4500 #f0f0f0;
+    }
+
+    body {
+      font-family: 'Archivo', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .project-gallery {
+      margin: 70px 0;
+      padding: 0 20px;
+    }
+    
+    .grid-container {
+      height: 80%;
+      width: 100%;
+      justify-content: center;
+      margin: 10px 0;
+      border-radius: 15px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+      gap: 15px;
+      object-fit: cover;
+    }
+  
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+
+    .gallery-item img {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      object-fit: cover;
+    }
+
+    .gallery-item img:hover {
+        scale: calc(1.1);
+        transition: 1s;
+        cursor: pointer;
+    }
+
+    .video-container {
+      height: 80%;
+      width: 100%;
+      justify-self: center;
+      margin: 10px 0;
+      border-radius: 15px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1, minmax(350px, 1fr);
+      gap: 15px;
+      object-fit: cover;
+    }
+
+    .video-container video {
+      height: 100%;
+      width: 100%;
+    }
+
+
+    /* LOADING ANIMATION START */
+    .loader {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 6s, visibility 0.6s;
+  }
+  .loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .loader::after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #ff5733;
+    border-radius: 50%;
+    animation: loading 1s  linear infinite;
+  }
+
+  @keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(2turn);
+    }
+  }
+
+    /* LOADING ANIMATION END */
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-fade-up {
+      animation: fade-up 0.8s ease-out forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out forwards;
+    }
+    
+    .animation-delay-200 { animation-delay: 200ms; }
+    .animation-delay-400 { animation-delay: 400ms; }
+    .animation-delay-600 { animation-delay: 600ms; }
+    
+    .project-card:hover .project-image {
+      transform: scale(1.1);
+    }
+    
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    .project-card:hover .view-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-white text-foreground scroll-smooth">
+
+  <div class="loader"></div>
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-1000 bg-transparent">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <nav class="flex h-20 items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center text-2xl font-bold tracking-tight text-foreground font-heading">
+          <span class="text-primary italic text-4xl leading-none" style="font-family: Georgia, serif; margin-top: -5px;">&#945;</span><span class="font-bold italic">ALPHA</span><span class="ml-1 text-muted font-normal">media</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden items-center gap-10 md:flex">
+          <a href="index.html" class="text-lg font-medium text-foreground/80 transition-colors hover:text-primary">
+            Home
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" class="p-2 md:hidden" aria-label="Toggle menu">
+          <svg id="menu-icon" class="h-6 w-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="h-6 w-6 text-foreground hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden absolute left-0 right-0 top-20 bg-white shadow-lg md:hidden animate-fade-in">
+      <div class="flex flex-col gap-4 p-6">
+        <a href="index.html" onclick="closeMobileMenu()" class="text-lg font-medium text-foreground/80 transition-colors hover:text-primary">
+          Home
+        </a>
+      </div>
+    </div>
+  </header>
+    
+<section class="project-gallery">
+  <div class="video-container">
+    <video src="public/videos/Continental Main Video Pashto.mp4" loop muted autoplay></video>
+  </div>
+
+  
+  
+  <div class="grid-container">
+    <div class="gallery-item">
+      <img src="public/images/continental (1).webp" alt="">
+    </div>
+    <div class="gallery-item">
+      <img src="public/images/continental (2).webp" alt="">
+    </div>
+    <div class="gallery-item">
+      <img src="public/images/continental (3).webp" alt="">
+    </div>
+    <div class="gallery-item">
+      <img src="public/images/continental (4).webp" alt="">
+    </div>
+    <div class="gallery-item item-center">
+      <img src="public/images/continental (5).webp" alt="">
+    </div>
+    <div class="gallery-item item-center">
+      <img src="public/images/continental (6).webp" alt="">
+    </div>
+    <div class="gallery-item item-center">
+      <img src="public/images/continental (7).webp" alt="">
+    </div>
+    <div class="gallery-item item-center">
+      <img src="public/images/continental (8).webp" alt="">
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="bg-secondary py-20 lg:py-28 border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <!-- Footer Bottom -->
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <!-- Logo & Copyright -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+          <a href="#" class="flex items-center text-2xl font-bold tracking-tight text-white font-heading">
+            <span class="text-primary italic text-4xl leading-none" style="font-family: Georgia, serif; margin-top: -5px;">&#945;</span><span class="font-bold italic">ALPHA</span><span class="ml-1 text-white/60 font-normal">media</span>
+          </a>
+          <span class="text-sm text-white/40">
+            &copy; 2026 All rights reserved
+          </span>
+        </div>
+        <div class="credits text-white/60"><span class="text-md" style="color: #ff5733;">Designed By</span> Mansoor Ahmad</div>
+
+        <!-- Navigation Links -->
+        <nav class="flex items-center gap-8">
+          <a href="index.html" class="text-md text-white/60 hover:text-primary transition-colors">
+            Home
+          </a>
+        </nav>
+
+        <!-- Social Links -->
+        <div class="flex items-center gap-4">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/alphamedia.af" aria-label="Instagram" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:border-primary hover:text-primary transition-all hover:scale-110">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61588675591499" aria-label="Facebook" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white/60 hover:border-primary hover:text-primary transition-all hover:scale-110">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- JAVASCRIPT LINK -->
+  <script src="js/script.js"></script>
+
+</body> 
